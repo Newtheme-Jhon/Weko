@@ -1,0 +1,227 @@
+@import 'variables';
+
+// estilos globale
+.col-full{
+    padding: 0 !important;
+}
+
+// Eliminar focus
+a:focus,
+.focus a{
+    outline: none !important;
+}
+
+// estilos para el header
+.side-header{
+    padding-top: 0;
+    margin-top: 0;
+}
+#masthead{
+    .col-full{
+        li{
+            a{
+                color: $white;
+            }
+        }
+    }
+    .col-superior{
+        @media( min-width: 768px ){
+            border-bottom: 1px solid rgba($color: $white, $alpha: 0.5);
+        }
+        .site-branding{
+            img{
+                max-width: 160px;
+            }
+        }
+    }
+    // menu items
+    .menu-item{
+        padding: 7px 7px;// desde aqui puedo cambiar el tamaño del menu para que quede todo en forma horizontal, y separar el menu
+        a{
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px 0px;
+            &:hover{
+                border-bottom: 1.5px solid rgba($color: $white, $alpha: 0.8);
+            }
+        }
+    }
+    .current_page_item{
+        a{
+            border-bottom: 1.5px solid rgba($color: $white, $alpha: 0.8);
+        }
+    }
+    // MENU PARA LOS MOVILES
+    .storefront-primary-navigation{
+        @media(max-width: 767.98px){
+            background: black;
+            padding: 20PX 0;
+        }
+        .menu{
+            li{
+                a{
+                    @media(max-width: 767.98px){
+                        text-decoration: none;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width: 767.98px){
+        margin-top: 0px !important;
+    }
+    .site-branding{
+        @media(max-width: 767.98px){
+            margin-top: 10px;
+        }
+    }
+} 
+
+// estilos para el carrusel
+.container-carrousel{
+    padding: 0 !important;
+    input[type=search]{
+        background: transparent;
+        border: 1px solid $white;// aqui cambio el color del contorno del buscador
+        border-radius: 30px;
+    }
+    .widger_product_search form:before{
+        color: #f8f9fa;
+    }
+    #carouselExampleIndicators{
+        .carousel-item{
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            width: 100%;
+            height: 600px;
+            @media (max-width: 767.98px){
+                height: 550px;
+            }
+        }
+        button{
+            &:hover{
+                background-color: transparent;
+            }
+            font-size: 36px;
+            opacity: inherit;        
+        }
+        &:before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($color: #000000, $alpha: 0.2);
+            z-index: 1;
+        }
+    }
+    #masthead{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: transparent;
+        margin-top: 20px;
+        margin-bottom: 0px;
+        border-bottom-color: transparent;
+    }
+}
+// Menú toggle es cuando lo visualizamos en una pantalla de dispositivo movil
+
+.storefront-primary-navigation{
+    .menu-toggle{
+            background: transparent;
+            color: $white;
+            border: 1px solid rgba($color: $white, $alpha: 0.9);
+            &:focus{
+                background: transparent;
+                color: $white;
+                border: 1px solid rgba($color: $white, $alpha: 0.9);
+            }
+    }
+    button.menu-toggle:after, button.menu-toggle:before, button.menu-toggle span:before{
+        background-color: $white;
+    }
+}
+// Memu background Animate
+.backgroundMenuAnimate{
+    @media(min-width: 768px){
+        background: black !important;// con este codigo el area del header sepone de color negro
+        margin-top: 0px !important;
+        padding-top: 20px;
+    }
+}
+
+// footer
+footer{
+    .footer-widgets{
+        width: 100% !important;         // el important es para que prevalesca sobre el otro
+           .widget_block{
+            margin-bottom: 14px;
+            ul{
+                padding: 0;
+            }
+        }
+        a{
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .site-info{     //desde aqui centro el nombre del dominio
+        text-align: center;
+    }
+    
+}
+// header cabecera paginas
+.site-header-pages{
+    @media(min-width: 768px){
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+    }
+    @media(max-width: 767.98px){
+        height: 300px;
+        position: fixed;
+        width: 100%;
+    }
+}
+.storefront-breadcrumb{
+    @media(min-width: 768px){
+        margin-top: 200px !important;
+        margin-bottom: 20px !important;
+    }
+    @media(max-width: 767.98px){
+        margin-top: 320px !important;
+    }
+    @media(min-width: 768px) and (max-width: 991.98px){
+        margin-top: 250px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+//Home
+.home{
+    .row-container{
+        background-color: #f0f0f0;
+        text-align: center;
+        .icon{
+            font-size: 32px;
+        }
+        div:nth-child(2){            // este nth-child busca hijos dentro del contenedor padre
+            .contenido{
+                @media(min-width: 768px){
+                    border-right: 1px solid #ccc;
+                    border-left: 1px solid #ccc;
+
+                }
+            }
+        }
+    }
+    #content{
+        header{
+            display: none;
+        }
+    }
+}

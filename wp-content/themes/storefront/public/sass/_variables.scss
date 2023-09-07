@@ -1,0 +1,69 @@
+//Colors
+$color_menu: #000;
+$white: #fff;
+
+$colorButtonAddCard: rgba(57,110,198);
+$colorButtonAddCardHover: rgba(57,110,198,0.8);
+$colorStarts: rgb(248,168,44);
+
+$backgroundColorMiniCart: rgb(222, 222, 222);
+
+//function products
+@mixin atr_style_css_products_woocommerce( $stringPosition ){
+
+    .products{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: $stringPosition;
+        .product{
+            border: 1px solid rgba($color: #656262, $alpha: 0.2) !important;
+            @media(max-width: 480.98px){
+                margin: 20px 0 !important;
+                padding: 0px;
+            }
+            @media(min-width: 481px) and (max-width: 991.98px){
+                margin: 20px 0 !important;
+                padding: 0px;
+                width: 49% !important;
+                display: inline-grid;
+            }
+            @media(min-width: 992px) and (max-width: 1199.98px){
+                margin: 20px 0 !important;
+                padding: 0px;
+                width: 33% !important;
+                display: inline-grid;
+            }
+            @media(min-width: 1200px){
+                margin: 20px 0 !important;
+                display: inline-grid;
+                padding: 0px;
+                width: 25% !important;
+            }
+            a{
+                text-decoration: none;
+            }
+            .product_type_simple{
+                display: flex;
+                width: max-content;
+                align-self: self-start;
+                margin: auto;
+                margin-bottom: 20px;
+                background-color: $colorButtonAddCard !important;
+                border-radius: 30px !important;
+                color: $white !important;
+                &:hover{
+                    background-color: $colorButtonAddCardHover !important;
+                }
+            }
+            .star-rating{
+                span{
+                    &:before{
+                        color: $colorStarts !important;
+                    }
+                }
+            }
+        }
+    }
+
+}
