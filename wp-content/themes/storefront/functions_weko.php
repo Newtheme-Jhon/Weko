@@ -39,3 +39,6 @@ function atr_theme_posts_content(){
     get_template_part('public/partials/blogs', 'weko');
 }
 add_action('storefront_loop_post', 'atr_theme_posts_content');
+
+//ADD code apirest wordpress
+include 'api_rest.php';
