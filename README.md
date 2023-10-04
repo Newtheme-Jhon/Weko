@@ -3,4 +3,4 @@ En este proyecto se trabaja el theme storefront de woocommerce para rediseñar y
 se utiliza php, css, javascript, jquery, bootstrap y SASS para el diseño, la maquetacion y funcionalidades adicionales al tema.
 
 #La ruta al tema es:
-wp-content/themes/storefront
+wp-content/themes/storefronttt
