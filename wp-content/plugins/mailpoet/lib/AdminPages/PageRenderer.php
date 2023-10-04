@@ -139,7 +139,10 @@ class PageRenderer {
     if ($this->subscribersFeature->isSubscribersCountEnoughForCache($subscriberCount)) {
       $subscribersCacheCreatedAt = $this->transientCache->getOldestCreatedAt(TransientCache::SUBSCRIBERS_STATISTICS_COUNT_KEY) ?: Carbon::now();
     }
-
+    // Automations are hidden when the subscription is part of a bundle and AutomateWoo is active
+    $showAutomations = !($this->wp->isPluginActive('automatewoo/automatewoo.php') &&
+      $this->servicesChecker->isBundledSubscription());
+    $hideAutomations = !$this->wp->applyFilters('mailpoet_show_automations', $showAutomations);
     $defaults = [
       'current_page' => sanitize_text_field(wp_unslash($_GET['page'] ?? '')),
       'site_name' => $this->wp->wpSpecialcharsDecode($this->wp->getOption('blogname'), ENT_QUOTES),
@@ -180,7 +183,7 @@ class PageRenderer {
       'mss_key_pending_approval' => $this->servicesChecker->isMailPoetAPIKeyPendingApproval(),
       'mss_active' => $this->bridge->isMailpoetSendingServiceEnabled(),
       'plugin_partial_key' => $this->servicesChecker->generatePartialApiKey(),
-      'mailpoet_hide_automations' => $this->servicesChecker->isBundledSubscription() && $this->wp->isPluginActive('automatewoo/automatewoo.php'),
+      'mailpoet_hide_automations' => $hideAutomations,
       'subscriber_count' => $subscriberCount,
       'subscribers_counts_cache_created_at' => $subscribersCacheCreatedAt->format('Y-m-d\TH:i:sO'),
       'subscribers_limit' => $this->subscribersFeature->getSubscribersLimit(),
@@ -200,6 +203,7 @@ class PageRenderer {
         'name' => $tag->getName(),
         ];
       }, $this->tagRepository->findAll()),
+      'display_docsbot_widget' => $this->displayDocsBotWidget(),
     ];
 
     if (!$defaults['premium_plugin_active']) {
@@ -239,5 +243,10 @@ class PageRenderer {
       'priceFormat' => $this->wooCommerceHelper->getWoocommercePriceFormat(),
 
     ];
+  }
+
+  public function displayDocsBotWidget(): bool {
+    $display = $this->wp->applyFilters('mailpoet_display_docsbot_widget', $this->settings->get('3rd_party_libs.enabled') === '1');
+    return (bool)$display;
   }
 }
